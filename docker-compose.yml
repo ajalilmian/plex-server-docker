@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  plex:
+    container_name: plex
+    image: linuxserver/plex:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PLEX_CLAIM=<PLEX_CLAIM_TOKEN> #optional
+    volumes:
+      - database:/config
+      - library:/media
+volumes:
+  database:
+  library:
+    driver_opts:
+      type: cifs
+      o: "username=<NAS_USER_USERNAME>,password=<NAS_USER_PASSWORD>,file_mode=0777,dir_mode=0777"
+      device: "//<NAS_HOSTNAME>/<SHARE_NAME>"
+      
