@@ -1,4 +1,4 @@
-# docker-nextcloud
+# plex-server-docker
 
 ## How to use
 
